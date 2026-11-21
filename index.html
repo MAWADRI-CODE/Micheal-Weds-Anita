@@ -13,6 +13,8 @@ body{font-family:'Book Antiqua',serif;background:#fffaf5;color:#111;line-height:
 .cover-content{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:24px 16px 20px;text-align:center;color:#fff}
 .top{font-size:clamp(11px,3vw,13px);letter-spacing:.35em;text-transform:uppercase}
 .hero{flex:1}
+.musicbtn{border:1px solid rgba(255,255,255,.7);background:rgba(0,0,0,.25);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;padding:10px 18px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:bold;cursor:pointer;margin:0 auto 12px;display:block}
+.musicbtn.playing{background:#c9a24b;color:#111;border-color:#c9a24b}
 .pill{margin:18px auto 0;border:1px solid rgba(255,255,255,.7);background:rgba(255,255,255,.13);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:11px 16px;border-radius:999px;font-size:clamp(13px,3.8vw,15px);max-width:92%}
 .themes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;max-width:920px;margin:0 auto;width:100%}
 .themes button{flex:1 1 auto;min-width:100px;border:1px solid rgba(255,255,255,.65);background:rgba(0,0,0,.16);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;padding:12px 9px;border-radius:999px;font-family:inherit;font-size:clamp(12px,3.4vw,14px);font-weight:bold;cursor:pointer}
@@ -72,12 +74,18 @@ footer{padding:28px 16px;text-align:center;background:#111;color:#fff}
 </head>
 <body>
 
+<!-- SOFT BACKGROUND MUSIC - plays after tap, loops softly -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="https://bgm.kurashi-dougu-memo.com/_emdash/api/media/file/01M7E0VVF75913NJQS2606QG2D.mp3" type="audio/mpeg">
+</audio>
+
 <section class="cover">
   <img class="bg" src="cover.jpg" alt="Micheal weds Anita">
   <div class="cover-content">
     <div class="top">Zanzibar Wedding • 2027</div>
     <div class="hero"></div>
     <div>
+      <button class="musicbtn" id="musicBtn" onclick="toggleMusic()">♪ Play Soft Music</button>
       <div class="themes" id="themeBar">
         <button data-target="welcome" class="active">Home</button>
         <button data-target="events">Events</button>
@@ -117,7 +125,7 @@ footer{padding:28px 16px;text-align:center;background:#111;color:#fff}
       <p class="small">Kukyala • Kwanjula • Zanzibar • 27th April</p>
       <button class="btn gold" style="margin-top:14px" onclick="openTheme('events')">View Plans →</button>
       <div style="height:10px"></div>
-      <button class="btn teal" onclick="alert('Zanzibar Sounds — link coming soon.')">▶ Zanzibar Sounds</button>
+      <button class="btn teal" onclick="toggleMusic()">♪ Soft Music — Play / Pause</button>
     </div>
     <div class="bless"><h3>We Appreciate You</h3><p style="margin-top:8px">Thank you for celebrating love with us.</p><p style="margin-top:10px"><em>“A cord of three strands is not quickly broken.” — Ecclesiastes 4:12</em></p><p style="margin-top:8px;font-size:13px;opacity:.8">May God bless you as you bless us.</p></div>
   </div>
@@ -354,6 +362,12 @@ let checks=[]; let contribution={amount:'',method:'Cash',towards:'Zanzibar Weddi
 let pledges=JSON.parse(localStorage.getItem('mw_pledges')||'[]');
 let cleared=JSON.parse(localStorage.getItem('mw_cleared')||'[]');
 let reservations=JSON.parse(localStorage.getItem('mw_reservations')||'[]');
+function toggleMusic(){
+  let a=document.getElementById('bgMusic');
+  let b=document.getElementById('musicBtn');
+  if(a.paused){ a.volume=0.6; a.play().then(()=>{ if(b){b.innerText='⏸ Pause Soft Music'; b.classList.add('playing');} }).catch(()=>{ alert('Could not play — please check volume / silent switch, then tap again'); }); }
+  else { a.pause(); if(b){b.innerText='♪ Play Soft Music'; b.classList.remove('playing');} }
+}
 function fmtDate(d){
   if(!d) return '—';
   try{ let dt=new Date(d+'T12:00:00'); return dt.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return d; }
