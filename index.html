@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Micheal weds Anita — Zanzibar Wedding Planner</title>
+<style>
+*{box-sizing:border-box;font-family:"Book Antiqua",Palatino,Georgia,serif}
+body{margin:0;color:#fff;font-size:11pt;background:#0E2A33;background-image:url('zanzibar.jpg');background-size:cover;background-position:center;background-attachment:fixed;background-repeat:no-repeat}
+body::before{content:"";position:fixed;inset:0;background:linear-gradient(to bottom, rgba(0,40,60,.15) 0%, rgba(0,40,60,.35) 45%, rgba(8,20,28,.92) 100%);z-index:-1}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;text-align:center;padding:20px 16px 60px}
+.heroBg{position:absolute;inset:0;background-image:url('zanzibar.jpg');background-size:cover;background-position:center;animation:breathe 18s ease-in-out infinite alternate}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.05) 0%, rgba(0,0,0,.25) 55%, rgba(8,20,28,.95) 100%)}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.07)}}
+.wave{position:absolute;left:-10%;right:-10%;bottom:0;height:38%;z-index:1;pointer-events:none;opacity:.35;filter:blur(2px);background:radial-gradient(ellipse 60% 45% at 30% 70%, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 60%),radial-gradient(ellipse 45% 35% at 70% 80%, rgba(160,240,255,.35) 0%, rgba(160,240,255,0) 60%);background-size:120% 120%;animation:waveDrift 12s ease-in-out infinite alternate;-webkit-mask-image:linear-gradient(to top, black 60%, transparent 100%);mask-image:linear-gradient(to top, black 60%, transparent 100%)}
+@keyframes waveDrift{0%{transform:translateX(-2.5%)}100%{transform:translateX(2.5%)}}
+.sun{position:absolute;top:14%;right:14%;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle, #FFF3B0 0%, #FFD166 45%, rgba(255,209,102,0) 70%);box-shadow:0 0 40px 18px rgba(255,220,120,.55);z-index:1;animation:sunGlow 4s ease-in-out infinite alternate}
+@keyframes sunGlow{from{box-shadow:0 0 30px 12px rgba(255,220,120,.4)}to{box-shadow:0 0 50px 22px rgba(255,220,120,.65)}}
+.cloud{position:absolute;background:#fff;opacity:.75;border-radius:50px;filter:blur(1px);z-index:1;animation:cloudMove linear infinite}
+@keyframes cloudMove{from{left:-20%}to{left:110%}}
+.bird{position:absolute;z-index:1;opacity:.65}
+.bird span{display:inline-block;animation:flap .9s ease-in-out infinite alternate}
+@keyframes flap{from{transform:rotate(-12deg) scaleY(1)}to{transform:rotate(12deg) scaleY(.75)}}
+.shell{position:absolute;bottom:12px;font-size:18px;opacity:.7;z-index:1}
+.heroInner{position:relative;z-index:2;max-width:580px;width:100%;animation:floatUp 5s ease-in-out infinite alternate}
+@keyframes floatUp{from{transform:translateY(0)}to{transform:translateY(-5px)}}
+.heroInner small{letter-spacing:3px;font-weight:800;font-size:9pt;color:#FFE9A8;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.heroInner h1{margin:8px 0 0;font-size:clamp(28pt,9vw,38pt);line-height:1.02;font-weight:900;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.heroInner h1 span{color:#7FF3FF;font-weight:400;font-style:italic}
+.heroInner .sub{margin:10px 0 0;font-size:11.5pt;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.tagline{margin:14px 0 0;display:inline-block;background:transparent;border:1px solid rgba(255,255,255,.65);padding:8px 14px;border-radius:20px;font-size:11pt;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.clearBtn{display:inline-block;margin:10px 6px 0 0;background:transparent;border:1px solid rgba(255,255,255,.65);color:#fff;text-decoration:none;font-weight:800;padding:12px 18px;border-radius:20px;font-size:11pt;text-shadow:0 1px 4px rgba(0,0,0,.7);cursor:pointer}
+.clearBtn.on{background:transparent;border-color:#fff}
+.scrollHint{margin-top:34px;opacity:.9;font-size:10.5pt;animation:floatUp 2s ease-in-out infinite alternate}
+.wrap{max-width:580px;margin:-18px auto 0;position:relative;z-index:3;padding:0 16px 20px}
+.countRow{display:flex;gap:8px}
+.count{flex:1;background:rgba(10,25,32,.78);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:12px;text-align:center}
+.count b{font-size:15pt;color:#FFBE0B;display:block}
+.count span{font-size:9.5pt;color:#D8D8DE}
+.themeBar{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.themeBar button{flex:1;min-width:90px;padding:11px 6px;border-radius:14px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-family:"Book Antiqua",Palatino,Georgia,serif;font-weight:800;cursor:pointer;font-size:10.5pt}
+.themeBar button.active{border-color:#fff;background:rgba(255,255,255,.18)}
+.themeBar button.kukyala.active{background:rgba(255,180,60,.22);border-color:#FFB43C}
+.themeBar button.kwanjula.active{background:rgba(180,80,255,.22);border-color:#C084FF}
+.themeBar button.zanzibar.active{background:rgba(80,220,255,.22);border-color:#7FF3FF}
+.tabs{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.tabs button{flex:1;min-width:70px;padding:12px 4px;border:0;border-radius:12px;font-weight:900;font-family:"Book Antiqua",Palatino,Georgia,serif;cursor:pointer;font-size:10.5pt}
+.tabs button.active{outline:2px solid #fff}
+.card{background:rgba(12,28,36,.88);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:16px;margin-top:12px}
+.card.kukyala{border-color:#FFB43C}
+.card.kwanjula{border-color:#C084FF}
+.card.zanzibar{border-color:#7FF3FF}
+.card h3{margin:0 0 8px;font-size:13pt}
+.card p{line-height:1.6;color:#E8E8EC;margin:6px 0}
+.card small{color:#C8C8CE}
+input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #333;background:#26262E;color:#fff;font-family:"Book Antiqua",Palatino,Georgia,serif;margin-top:8px;font-size:10.5pt}
+.btn{display:block;width:100%;padding:13px;border:0;border-radius:12px;font-weight:900;font-family:"Book Antiqua",Palatino,Georgia,serif;cursor:pointer;margin-top:10px;font-size:10.5pt}
+.wedTask{display:flex;gap:8px;align-items:center;background:#26262E;border-radius:12px;padding:10px;margin-top:8px}
+.wedTask b{flex:1;font-size:10.5pt;line-height:1.4}
+.wedTask b span{font-size:9pt;color:#FFBE0B;font-weight:400}
+.done{opacity:.5;text-decoration:line-through}
+.del{background:#FF006E;color:#fff;border:0;border-radius:8px;padding:6px 10px;cursor:pointer}
+.totalBox{background:#0F0F14;border-radius:14px;padding:12px;margin-top:8px}
+.totalBox b{font-size:16pt;color:#FFBE0B}
+.eventItem{border-left:4px solid #fff;padding:8px 0 8px 12px;margin:10px 0}
+.eventItem.kukyala{border-color:#FFB43C}
+.eventItem.kwanjula{border-color:#C084FF}
+.eventItem.zanzibar{border-color:#7FF3FF}
+.eventItem b{font-size:11.5pt}
+.pill{display:inline-block;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.4);font-size:9.5pt;background:transparent}
+.footer{max-width:580px;margin:16px auto;text-align:center;color:#C8C8CE;font-size:9.5pt;line-height:1.6;padding:0 16px 30px}
+@media print{body{background:#fff;color:#000}.hero,.tabs,.themeBar,.noPrint{display:none!important}.card{border:1px solid #000;color:#000;background:#fff}.card p{color:#000}}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="heroBg"></div>
+<div class="sun"></div>
+<div class="wave"></div>
+<div class="cloud" style="top:16%;width:90px;height:18px;animation-duration:55s"></div>
+<div class="cloud" style="top:22%;width:60px;height:14px;animation-duration:65s;animation-delay:12s;opacity:.5"></div>
+<div class="bird" style="top:24%;left:12%"><span style="font-size:14px">🕊️</span></div>
+<div class="bird" style="top:29%;left:68%"><span style="font-size:11px">🕊️</span></div>
+<div class="shell" style="left:12%">🐚</div><div class="shell" style="left:48%;font-size:14px">⭐</div><div class="shell" style="right:12%">🐚</div>
+<div class="heroInner">
+<small>💍 ZANZIBAR • KAMPALA • 2027</small>
+<h1>Micheal<br><span>weds</span> Anita</h1>
+<p class="sub">Clean waters • White sand • Cozy skies • One love, three celebrations</p>
+<div><span class="tagline">Kukyala • Kwanjula • Zanzibar — One Soul, One Journey</span></div>
+<div>
+<button class="clearBtn" onclick="showTab('events');document.getElementById('planner').scrollIntoView({behavior:'smooth'})">📅 View Plans</button>
+<button class="clearBtn" id="soundBtn" onclick="toggleBeachSound()">🌊 Zanzibar Sounds</button>
+</div>
+<div class="scrollHint">↓ Scroll for Wedding Plans ↓</div>
+</div>
+</div>
+
+<div class="wrap" id="planner">
+<div class="countRow">
+<div class="count"><b id="count1">—</b><span>Days to Kukyala<br>19 Nov 2027</span></div>
+<div class="count"><b id="count2">—</b><span>Days to Wedding<br>26 Nov 2027</span></div>
+</div>
+
+<div class="themeBar">
+<button class="kukyala active" id="theme-kukyala" onclick="setTheme('kukyala')">🟠 Kukyala<br><small style="font-weight:400">Warm Earth • Gold</small></button>
+<button class="kwanjula" id="theme-kwanjula" onclick="setTheme('kwanjula')">💜 Kwanjula<br><small style="font-weight:400">Royal • Gomesi</small></button>
+<button class="zanzibar" id="theme-zanzibar" onclick="setTheme('zanzibar')">🩵 Zanzibar<br><small style="font-weight:400">Turquoise • Sand</small></button>
+</div>
+
+<div class="tabs">
+<button style="background:#FFBE0B;color:#111" id="btn-events" onclick="showTab('events')">📅 Events</button>
+<button style="background:#fff;color:#111" id="btn-tasks" onclick="showTab('tasks')">✅ Tasks</button>
+<button style="background:#00C853;color:#fff" id="btn-budget" onclick="showTab('budget')">💰 Budget</button>
+<button style="background:#7B2FFF;color:#fff" id="btn-guests" onclick="showTab('guests')">👥 Guests</button>
+</div>
+
+<div id="tab-events">
+<div class="card zanzibar" id="eventsCard">
+<h3 id="eventsTitle">🩵 Zanzibar Theme — Clean Waters</h3>
+<div class="eventItem kukyala"><b>Kukyala — Warm Earth</b><br><span>Fri 19 Nov 2027 • Kampala • 20 + 20 guests</span><br><span class="pill">Theme: Gold • Earth • Family • Traditional</span><br><small>Warm sunset, earth tones, family gathering, gifts &amp; introductions.</small></div>
+<div class="eventItem kwanjula"><b>Kwanjula — Royal Purple</b><br><span>Sat 20 Nov 2027 • Kampala • 20 + 20 guests</span><br><span class="pill">Theme: Royal Purple • Pink • Gomesi</span><br><small>Gomesi, celebration, music, bride price, royal colours.</small></div>
+<div class="eventItem zanzibar"><b>Wedding Zanzibar — Turquoise</b><br><span>Fri 26 Nov 2027 • Zuri Zanzibar, Kendwa • 20 guests (10 + 10)</span><br><span class="pill">Theme: Turquoise • White Sand • Cozy Sky</span><br><small>Beach vows, clean water, white sand, sunset dinner.</small></div>
+<p style="font-size:10pt"><b>Venue:</b> Still Searching — Top: Zuri Zanzibar • Backup: Baraza • RIU Palace<br><b>✈️ EBB → ZNZ</b> ~1h 56m • ~$370-$450 return • 20 guests = $7,400-$9,000</p>
+</div>
+<div class="card">
+<h3>📥 Daily Downloads</h3>
+<button class="btn" style="background:#FFBE0B;color:#111" onclick="downloadCSV('tasks')">⬇ Download Tasks Excel (CSV)</button>
+<button class="btn" style="background:#fff;color:#111" onclick="downloadCSV('budget')">⬇ Download Budget Excel (CSV)</button>
+<button class="btn" style="background:#00C853;color:#fff" onclick="downloadCSV('guests')">⬇ Download Guests Excel (CSV)</button>
+<button class="btn noPrint" style="background:#7B2FFF;color:#fff" onclick="window.print()">🖨️ Print / Save Daily Update as PDF</button>
+<p id="dailySummary" style="font-size:10pt;line-height:1.6"></p>
+</div>
+</div>
+
+<div id="tab-tasks" style="display:none">
+<div class="card" id="tasksCard">
+<h3>✅ Committee To-Do — <span id="tasksThemeLabel">Kukyala</span></h3>
+<p style="font-size:10pt;color:#C8C8CE">Sandra Dotti, Wilson Sekatte, Anita, Micheal</p>
+<input id="taskText" placeholder="New task e.g. Book Zuri venue">
+<select id="taskWho"><option>Micheal Mawadri</option><option>Anita Juliet Asherura</option><option>Sandra Dotti</option><option>Wilson Sekatte</option></select>
+<select id="taskEvent"><option>Kukyala</option><option>Kwanjula</option><option>Wedding Zanzibar</option><option>General</option></select>
+<input id="taskDue" type="date">
+<button class="btn" style="background:#FFBE0B;color:#111" onclick="addTask()">+ Add Task</button>
+<div id="taskList"></div>
+</div>
+</div>
+
+<div id="tab-budget" style="display:none">
+<div class="card" id="budgetCard">
+<h3>💰 Budget — <span id="budgetThemeLabel">Kukyala</span></h3>
+<div class="totalBox"><b id="budgetTotal">$0</b><br><small id="budgetSub"></small></div>
+<input id="bCat" placeholder="Category e.g. Flights">
+<input id="bEst" type="number" placeholder="Estimated USD">
+<input id="bPaid" type="number" placeholder="Paid USD">
+<button class="btn" style="background:#00C853;color:#fff" onclick="addBudget()">+ Add Budget Item</button>
+<div id="budgetList"></div>
+</div>
+</div>
+
+<div id="tab-guests" style="display:none">
+<div class="card" id="guestsCard">
+<h3>👥 Guests — <span id="guestsThemeLabel">Kukyala</span></h3>
+<p style="font-size:10pt">Zanzibar: 10 + 10 = 20 • Kukyala: 20 + 20 = 40</p>
+<input id="gName" placeholder="Guest name">
+<select id="gSide"><option>Micheal Side - Zanzibar</option><option>Anita Side - Zanzibar</option><option>Micheal Side - Kukyala</option><option>Anita Side - Kukyala</option></select>
+<select id="gRSVP"><option>Pending</option><option>Confirmed Yes</option><option>No</option><option>Paid Flight</option></select>
+<button class="btn" style="background:#7B2FFF;color:#fff" onclick="addGuest()">+ Add Guest</button>
+<div id="guestList"></div>
+</div>
+</div>
+</div>
+
+<div class="footer">Micheal weds Anita • 26 Nov 2027 • Zanzibar<br>Private planner — do not share publicly.<br>Each plan has its own theme: Kukyala Gold • Kwanjula Royal • Zanzibar Turquoise</div>
+
+<script>
+var curTheme='kukyala';
+function setTheme(t){curTheme=t;['kukyala','kwanjula','zanzibar'].forEach(function(x){var b=document.getElementById('theme-'+x);if(b)b.classList.toggle('active',x===t)});var titles={kukyala:'🟠 Kukyala Theme — Warm Earth',kwanjula:'💜 Kwanjula Theme — Royal Purple',zanzibar:'🩵 Zanzibar Theme — Clean Waters'};document.getElementById('eventsTitle').textContent=titles[t];['eventsCard','tasksCard','budgetCard','guestsCard'].forEach(function(id){var el=document.getElementById(id);if(el){el.classList.remove('kukyala','kwanjula','zanzibar');el.classList.add(t)}});var label=t==='kukyala'?'Kukyala':t==='kwanjula'?'Kwanjula':'Zanzibar';['tasksThemeLabel','budgetThemeLabel','guestsThemeLabel'].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=label});if(t==='kukyala')document.getElementById('taskEvent').value='Kukyala';if(t==='kwanjula')document.getElementById('taskEvent').value='Kwanjula';if(t==='zanzibar')document.getElementById('taskEvent').value='Wedding Zanzibar';}
+function getW(k,d){try{var v=localStorage.getItem('wed_'+k);return v===null?d:JSON.parse(v)}catch(e){return d}}
+function setW(k,v){try{localStorage.setItem('wed_'+k,JSON.stringify(v))}catch(e){}}
+var tasks=getW('tasks',[{txt:"Confirm Zanzibar venue - Zuri Zanzibar",who:"Micheal Mawadri",event:"Wedding Zanzibar",due:"2027-08-01",done:false},{txt:"Get group flight quote EBB-ZNZ for 20",who:"Sandra Dotti",event:"Wedding Zanzibar",due:"2027-07-15",done:false},{txt:"Book Kukyala venue in Kampala",who:"Wilson Sekatte",event:"Kukyala",due:"2027-09-01",done:false},{txt:"Final guest list 10+10 Zanzibar",who:"Anita Juliet Asherura",event:"Wedding Zanzibar",due:"2027-08-15",done:false},{txt:"Set total budget + contributions",who:"Micheal Mawadri",event:"General",due:"2027-06-30",done:false},{txt:"Choose photographer Zanzibar",who:"Sandra Dotti",event:"Wedding Zanzibar",due:"2027-09-01",done:false},{txt:"Kwanjula prep - gomesi, gifts, food",who:"Anita Juliet Asherura",event:"Kwanjula",due:"2027-10-01",done:false}]);
+var budget=getW('budget',[{cat:"Kukyala + Kwanjula (Kampala)",est:2000,paid:0},{cat:"Zanzibar Venue + Decor (Zuri)",est:5000,paid:0},{cat:"Flights 20 guests EBB-ZNZ",est:8200,paid:0},{cat:"Accommodation 20 x 3 nights",est:5000,paid:0},{cat:"Food, Cake, Photo, MC",est:2800,paid:0}]);
+var guests=getW('guests',[]);
+function showTab(t){['events','tasks','budget','guests'].forEach(function(x){document.getElementById('tab-'+x).style.display=(x===t?'block':'none');var b=document.getElementById('btn-'+x);if(b)b.classList.toggle('active',x===t)})}
+function renderTasks(){document.getElementById('taskList').innerHTML=tasks.map(function(t,i){return "<div class='wedTask "+(t.done?'done':'')+"'><input type='checkbox' "+(t.done?'checked':'')+" onclick='toggleTask("+i+")' style='width:auto'><b>"+t.txt+"<br><span>"+t.who+" • "+t.event+" • Due "+t.due+"</span></b><button class='del' onclick='delTask("+i+")'>X</button></div>"}).join("");updateSummary()}
+function addTask(){var txt=document.getElementById('taskText').value.trim();if(!txt)return;tasks.push({txt:txt,who:document.getElementById('taskWho').value,event:document.getElementById('taskEvent').value,due:document.getElementById('taskDue').value||"2027-11-01",done:false});setW('tasks',tasks);document.getElementById('taskText').value="";renderTasks()}
+function toggleTask(i){tasks[i].done=!tasks[i].done;setW('tasks',tasks);renderTasks()}
+function delTask(i){tasks.splice(i,1);setW('tasks',tasks);renderTasks()}
+function renderBudget(){var tot=0,paid=0;budget.forEach(function(b){tot+=+b.est;paid+=+b.paid});document.getElementById('budgetTotal').textContent="$"+paid.toLocaleString()+" paid / $"+tot.toLocaleString()+" budget";document.getElementById('budgetSub').textContent="Remaining $"+(tot-paid).toLocaleString();document.getElementById('budgetList').innerHTML=budget.map(function(b,i){return "<div class='wedTask'><b>"+b.cat+"<br><span>Est $"+b.est+" • Paid $"+b.paid+" • Left $"+(b.est-b.paid)+"</span></b><button class='del' onclick='delBudget("+i+")'>X</button></div>"}).join("");updateSummary()}
+function addBudget(){var c=document.getElementById('bCat').value.trim();if(!c)return;budget.push({cat:c,est:+document.getElementById('bEst').value||0,paid:+document.getElementById('bPaid').value||0});setW('budget',budget);document.getElementById('bCat').value="";document.getElementById('bEst').value="";document.getElementById('bPaid').value="";renderBudget()}
+function delBudget(i){budget.splice(i,1);setW('budget',budget);renderBudget()}
+function renderGuests(){document.getElementById('guestList').innerHTML=guests.map(function(g,i){return "<div class='wedTask'><b>"+g.name+"<br><span>"+g.side+" • "+g.rsvp+"</span></b><button class='del' onclick='delGuest("+i+")'>X</button></div>"}).join("")||"<p>No guests yet.</p>";updateSummary()}
+function addGuest(){var n=document.getElementById('gName').value.trim();if(!n)return;guests.push({name:n,side:document.getElementById('gSide').value,rsvp:document.getElementById('gRSVP').value});setW('guests',guests);document.getElementById('gName').value="";renderGuests()}
+function delGuest(i){guests.splice(i,1);setW('guests',guests);renderGuests()}
+function updateSummary(){var done=tasks.filter(function(t){return t.done}).length;var tot=budget.reduce(function(a,b){return a+ +b.est},0);var paid=budget.reduce(function(a,b){return a+ +b.paid},0);var conf=guests.filter(function(g){return g.rsvp.indexOf('Confirmed')>=0||g.rsvp.indexOf('Paid')>=0}).length;var el=document.getElementById('dailySummary');if(el)el.innerHTML="<b>Daily Update — "+new Date().toDateString()+"</b><br>💍 Micheal weds Anita • Wedding 26 Nov 2027 Zanzibar<br>✅ Tasks: "+done+"/"+tasks.length+" done<br>💰 Budget: $"+paid.toLocaleString()+" / $"+tot.toLocaleString()+" • Remaining $"+(tot-paid).toLocaleString()+"<br>👥 Guests: "+guests.length+" • "+conf+" confirmed"}
+function downloadCSV(type){var rows=[];if(type==='tasks'){rows=[["Task","Who","Event","Due","Done"]];tasks.forEach(function(t){rows.push([t.txt,t.who,t.event,t.due,t.done?"Yes":"No"])})}if(type==='budget'){rows=[["Category","Estimated","Paid","Remaining"]];budget.forEach(function(b){rows.push([b.cat,b.est,b.paid,b.est-b.paid])})}if(type==='guests'){rows=[["Name","Side","RSVP"]];guests.forEach(function(g){rows.push([g.name,g.side,g.rsvp])})}var csv=rows.map(function(r){return r.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"'}).join(",")}).join("\n");var blob=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download="Wedding-"+type+"-"+new Date().toISOString().slice(0,10)+".csv";a.click()}
+// === ZANZIBAR SOUNDS — waves + distant birds + soft wind, no file ===
+var beachCtx=null, beachOn=false, beachNodes=[], beachBirdTimer=null;
+function beachWaves(){var len=beachCtx.sampleRate*2;var buf=beachCtx.createBuffer(1,len,beachCtx.sampleRate);var d=buf.getChannelData(0);var last=0;for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+0.02*w)/1.02;d[i]=last*3.5}var src=beachCtx.createBufferSource();src.buffer=buf;src.loop=true;var f=beachCtx.createBiquadFilter();f.type="lowpass";f.frequency.value=380;var g=beachCtx.createGain();g.gain.value=0.032;src.connect(f);f.connect(g);g.connect(beachCtx.destination);src.start();beachNodes.push(src,g);var lfo=beachCtx.createOscillator();lfo.frequency.value=0.07;var lg=beachCtx.createGain();lg.gain.value=0.014;lfo.connect(lg);lg.connect(g.gain);lfo.start();beachNodes.push(lfo)}
+function beachBird(){if(!beachOn||!beachCtx)return;var t=beachCtx.currentTime;var o=beachCtx.createOscillator();o.type="sine";var g=beachCtx.createGain();g.gain.value=0.0001;o.connect(g);g.connect(beachCtx.destination);var base=2000+Math.random()*1000;o.frequency.setValueAtTime(base,t);o.frequency.exponentialRampToValueAtTime(base*1.3,t+0.12);o.frequency.exponentialRampToValueAtTime(base*0.9,t+0.22);g.gain.exponentialRampToValueAtTime(0.008,t+0.05);g.gain.exponentialRampToValueAtTime(0.0001,t+0.28);o.start(t);o.stop(t+0.3)}
+function toggleBeachSound(){if(beachOn){beachOn=false;try{if(beachBirdTimer)clearInterval(beachBirdTimer);beachNodes.forEach(function(n){try{n.stop&&n.stop()}catch(e){}});if(beachCtx)beachCtx.close()}catch(e){}beachCtx=null;beachNodes=[];var b=document.getElementById('soundBtn');if(b){b.textContent="🌊 Zanzibar Sounds";b.classList.remove('on')}}else{try{beachCtx=new (window.AudioContext||window.webkitAudioContext)();beachOn=true;beachWaves();beachBirdTimer=setInterval(beachBird,6000+Math.random()*4000);var b2=document.getElementById('soundBtn');if(b2){b2.textContent="🌊 Zanzibar Sounds • Playing";b2.classList.add('on')}}catch(e){}}}
+var now=new Date();document.getElementById('count1').textContent=Math.ceil((new Date('2027-11-19')-now)/86400000)+" days";
+document.getElementById('count2').textContent=Math.ceil((new Date('2027-11-26')-now)/86400000)+" days";
+renderTasks();renderBudget();renderGuests();updateSummary();showTab('events');setTheme('kukyala');
+</script>
+</body>
+</html>
